@@ -2,7 +2,7 @@ import time
 from huaweicloudsdkcore.auth.credentials import BasicCredentials
 from huaweicloudsdkas.v1.region.as_region import AsRegion
 from huaweicloudsdkas.v1 import *
-from config import CREDENTIALS, ASG_CONFIG, INSTANCE_CONFIG, TERRAFORM_CONFIG
+from config import CREDENTIALS, ASG_CONFIG, INSTANCE_CONFIG, IMAGE_CONFIG
 
 class ASGUpdater:
     def __init__(self):
@@ -77,7 +77,7 @@ class ASGUpdater:
             if not asg_name:
                 raise Exception("Failed to get ASG name")
      
-            current_version = TERRAFORM_CONFIG["template_version"]
+            current_version = IMAGE_CONFIG["template_version"]
             config_name = f"{asg_name}_{current_version}"
             
           
@@ -210,7 +210,7 @@ class ASGUpdater:
             print("\n=== Starting Configuration Update Process ===")
             
    
-            image_id = new_image_id or TERRAFORM_CONFIG["image_id"]
+            image_id = new_image_id or IMAGE_CONFIG["image_id"]
             group_id = ASG_CONFIG["group_id"]
 
             print(f"\nUpdating ASG configuration with image: {image_id}")
